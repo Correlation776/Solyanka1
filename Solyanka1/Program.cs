@@ -4,22 +4,36 @@ using System.Text;
 namespace Solyanka1
 {
     //Сгенерировать последовательность Морса-Туэ до N-го знака.
-    internal class Program
+    public class Program
     {
         static void Main()
         {
             Console.WriteLine("Which digit should the sequence start with(0 or 1)?");
-            int.TryParse(Console.ReadLine(), out int f);
+            if (!int.TryParse(Console.ReadLine(), out int f))
+            {
+                Console.WriteLine("Incorrect Data");
+                return;
+            }
             Console.WriteLine("How long is the sequence to be generated?");
-            int.TryParse(Console.ReadLine(), out int n);
+            if (!int.TryParse(Console.ReadLine(), out int n))
+            {
+                Console.WriteLine("Incorrect Data");
+                return;
+            }
             Console.WriteLine(SequenceGenerator(f, n));
         }
 
-        static string SequenceGenerator(int firstDigit, int sequenceLength)
+        public static string SequenceGenerator(int firstDigit, int sequenceLength)
         {
-            if (firstDigit > 1)
+            if (firstDigit > 1 || firstDigit < 0)
             {
                 Console.WriteLine("Incorrect number on the first spot");
+                return null;
+            }
+            
+            if (sequenceLength < 0)
+            {
+                Console.WriteLine("Length can't be negative");
                 return null;
             }
 
